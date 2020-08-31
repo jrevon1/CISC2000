@@ -22,7 +22,7 @@ int main()
    
    // A do/while loop asking the user to enter two CPI inputs unless they don't type "y" or "Y" after
     do{ 
-        cout << "Enter the old and new consumer price indices: " << endl;
+        cout << "Enter the old and new consumer price indices: ";
     
 
    // Read in two float values for the cpi and store them in the variables
@@ -32,12 +32,15 @@ int main()
         inflation_rate = InflationRate(old_cpi, new_cpi);
    // Printing the calculations
         cout << "Inflation rate is " << inflation_rate << endl;
-        cout << "Try again? [y or Y]: ";
+        cout << "Try again? (y or Y): ";
         cin >> user_input;
-   // If user entered "y" or "Y", advance the counter
-        counter++;
-   // Then add the inflation rate to the running total
-        average_rate += inflation_rate;
+        
+    // If user entered "y" or "Y", AND the inflation rate was greater than 0 advance the counter
+        if (inflation_rate != 0){
+            counter++;
+            // Then add the inflation rate to the running total
+            average_rate += inflation_rate;
+        }
     }
    while ((user_input == 'y') || (user_input == 'Y'));
    // If the user doesn't enter "y" or "Y", calculate the final average by dividing the running total by the number of times the loop executed
