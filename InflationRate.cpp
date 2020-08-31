@@ -44,6 +44,9 @@ double InflationRate(float old_cpi, float new_cpi)
 {
    // TODO: Implement InflationRate to calculate the percentage increase or decrease
    // Use (new_cpi - old_cpi) / old_cpi * 100
-   return (new_cpi - old_cpi) / old_cpi * 100;
-    
+   double InflationRate = (new_cpi - old_cpi) / old_cpi * 100;
+    if ((new_cpi <= 0) || (old_cpi <= 0))
+        return InflationRate = 0;
+    else
+        return InflationRate;
 }
