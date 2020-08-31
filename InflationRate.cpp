@@ -11,42 +11,53 @@ using namespace std;
  */
 double InflationRate(float old_cpi, float new_cpi);
 
-int main()   //C++ programs start by executing the function main
+int main()
 {
-   // TODO #1: declare two float variables for the old consumer price index (cpi) and the new cpi
-   float old_cpi, new_cpi;
+   // Declaring variables for the two user CPI inputs, to hold the calculated inflation rate, and to hold the running average rate, respectively
+   float old_cpi, new_cpi, inflation_rate, average_rate;
+   // A counter to calculate the final average rate
+   int counter = 0;
+   // An input to trigger the do/while loop
+   char user_input;
    
-   cout << "Enter the old and new consumer price indices: " << endl;
+   // A do/while loop asking the user to enter two CPI inputs unless they don't type "y" or "Y" after
+    do{ 
+        cout << "Enter the old and new consumer price indices: " << endl;
     
 
-   // TODO #2: Read in two float values for the cpi and store them in the variables
-   cin >> old_cpi >> new_cpi;
+   // Read in two float values for the cpi and store them in the variables
+        cin >> old_cpi >> new_cpi;
 
-   // TODO #3: call the function InflationRate with the two cpis
-   // TODO #4: print the results
-   cout << "Inflation rate is " << InflationRate(old_cpi, new_cpi) << endl;
-
-
-   // BONUS #1: Put the logic in TODO #2-4 in a loop that asks the user to enter 'y' if there's more data
-
-
-   // BONUS #2: Keep a running total of the valid inflation rates and the number of computed rates to calculate the average rate.
-   // Print the results after the loop
+   // Function call for InflationRate with the two CPI inputs
+        inflation_rate = InflationRate(old_cpi, new_cpi);
+   // Printing the calculations
+        cout << "Inflation rate is " << inflation_rate << endl;
+        cout << "Try again? [y or Y]: ";
+        cin >> user_input;
+   // If user entered "y" or "Y", advance the counter
+        counter++;
+   // Then add the inflation rate to the running total
+        average_rate += inflation_rate;
+    }
+   while ((user_input == 'y') || (user_input == 'Y'));
+   // If the user doesn't enter "y" or "Y", calculate the final average by dividing the running total by the number of times the loop executed
+   average_rate /= counter;
+   // Printing the result
+   cout << "Average rate is " << average_rate << endl;
 
    return 0;
 }
 
 
-// double InflationRate(float old_cpi, float new_cpi)
-// precondition:   both prices must be greater than 0.0
-// postcondition:  the inflation rate is returned or 0 for invalid inputs
 double InflationRate(float old_cpi, float new_cpi)
 {
-   // TODO: Implement InflationRate to calculate the percentage increase or decrease
-   // Use (new_cpi - old_cpi) / old_cpi * 100
-   double InflationRate = (new_cpi - old_cpi) / old_cpi * 100;
+   // InflationRate will calculate the percentage increase or decrease
+    double InflationRate = (new_cpi - old_cpi) / old_cpi * 100;
+    // precondition:   both prices must be greater than 0.0
+    // postcondition:  the inflation rate is returned or 0 for invalid inputs
     if ((new_cpi <= 0) || (old_cpi <= 0))
         return InflationRate = 0;
+    // otherwise return the calculated inflation rate
     else
         return InflationRate;
 }
