@@ -1,5 +1,4 @@
 //This program calculates the inflation rate given two Consumer Price Index values and prints it to the monitor.
-// WIP: for loop to fill array
 
 #include <iostream>
 using namespace std;
@@ -42,10 +41,6 @@ int main()
 
         // Function call for InflationRate with the two CPI inputs
         inflation_rate = InflationRate(old_cpi, new_cpi);
-        // Storing the calculated inflation rate in each subsequent array index
-        for (int i = 0; i <= MAX_RATES; i++){
-            rates[i] = inflation_rate;
-        }
         // Printing the calculations
         cout << "Inflation rate is " << inflation_rate << endl;
         cout << "Try again? (y or Y): ";
@@ -53,8 +48,10 @@ int main()
         
         // If user entered "y" or "Y", AND the inflation rate was NOT 0, advance the counter, then add the inflation rate to the running total
         if (inflation_rate != 0){
-            counter++;
-            average_rate += inflation_rate;
+          // Storing the calculated inflation rate in each subsequent array index
+          rates[counter] = inflation_rate;
+          counter++;
+          average_rate += inflation_rate;
         }
     }
     while ((user_input == 'y') || (user_input == 'Y'));
