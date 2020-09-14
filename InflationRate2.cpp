@@ -46,11 +46,13 @@ int main()
         cout << "Try again? (y or Y): ";
         cin >> user_input;
         
-        // If user entered "y" or "Y", AND the inflation rate was NOT 0, advance the counter, then add the inflation rate to the running total
+        // If the inflation rate was NOT 0, then:
         if (inflation_rate != 0){
-          // Storing the calculated inflation rate in each subsequent array index
+          // Store the calculated inflation rate in the current index in the array
           rates[counter] = inflation_rate;
+          // Advance the counter, for both the array indexing AND calculating the average later
           counter++;
+          // Then add the inflation rate to the running total
           average_rate += inflation_rate;
         }
     }
