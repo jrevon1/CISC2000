@@ -13,9 +13,9 @@ double InflationRate(float old_cpi, float new_cpi);
 
 /*
  * getCPIValues - gets user input for old and new consumer price index values
- * @param old_cpi: is the consumer price index that it was a year ago
- * @param new_cpi: is the consumer price index that it is currently 
- * @return is void
+ * @param &old_cpi: is the consumer price index that it was a year ago
+ * @param &new_cpi: is the consumer price index that it is currently 
+ * @return is void; &old_cpi and &new_cpi are updated by reference
  */
 void getCPIValues (float &old_cpi, float &new_cpi);
 
