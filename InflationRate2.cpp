@@ -28,7 +28,7 @@ void getCPIValues (float &old_cpi, float &new_cpi);
 void swap_values(double &x, double &y);
 
 /*
- * sort_array - takes in an array and a size, then uses a series of for-loops to selection sort the array
+ * sort_array - takes in an array and a size, then uses a for-loop to compare the element at the current index [i] to the element at the next index [i+1]
  * @param *array is a pointer to the array's first position
  * @param size is the total number of elements in the aforementioned array
  * @return is void; sort_array uses the swap_values function to update the order by reference
@@ -99,19 +99,19 @@ int main()
     cout << "Average rate is " << average_rate << endl;
 
     // TEST to print out the array values and check them after execution
-    int forcounter = 1;
+    cout << endl;
+    cout << "Unsorted List:" << endl;
     for (int i = 0; i <= MAX_RATES; i++)
     {
-            cout << "In the " << i << " position (" << forcounter << " is position by counter) is "<< rates[i] << endl;
-            forcounter++;
+      cout << rates[i] << endl;
     }
-    selectionSort(rates, counter);
+    sort_array(rates, counter);
 
-    forcounter = 1;
+    cout << endl;
+    cout << "Sorted List:" << endl;
     for (int i = 0; i <= MAX_RATES; i++)
     {
-            cout << "In the " << i << " position (" << forcounter << " is position by counter) is "<< rates[i] << endl;
-            forcounter++;
+      cout << rates[i] << endl;
     }
 
     return 0;
@@ -151,29 +151,44 @@ void getCPIValues (float &old_cpi, float &new_cpi)
 void swap_values(double &x, double &y)
 {
   // Create a temporary variable and setting it to the first argument
-   int temp = x;
+  // This MUST be a double otherwise you'll lose values in the array!
+  double temp = x;
   // Set the first argument to the second argument
-   x = y;
+  x = y;
   // Set the temporary variable to the second argument
-   y = temp;
+  y = temp;
 }
 
 void sort_array(double array[], int size)
 {
-  // ADD NOTE HERE
-  int min_size;
-  // ADD NOTE HERE
-  for(min_size = 0; min_size < size - 1; min_size++)
+  while(1)
   {
-    // ADD NOTE HERE
-    int min_pos = min_size;
-    for(int i = min_size + 1; i < size - 1; i++)
+    // Declare a boolean variable for later to check if the list was sorted or not
+    bool sorted = false;
+
+    // For-loop to cycle through each element in the array, minus 1
+    // otherwise it won't be able to compare the very last value to anything
+    for(int i = 0; i < size - 1; i++)
     {
-      // ADD NOTE HERE
-      if(array[i] < array[min_size])
-        min_size = i;
-      // ADD NOTE HERE
-      swap_values(array[i], array[min_size]);
+      // If the element at [i] is bigger than the
+      // element at the next index in the array, [i+1]
+      if(array[i] > array[i+1])
+      {
+        // Then call swap_values to swap that element [i] and 
+        // the element at the next index in the array [i+1]
+        swap_values(array[i], array[i+1]);
+        // And finally set sorted to "true" because we did sort it this time
+        sorted = true;
+      }
+      
+    }
+    // If the element at [i] was not bigger than the element 
+    // at the next index [i+1], then we didn't need to swap 
+    // This means the list is in order so sorted stays false
+    // and finally break out of the code
+    if(sorted == false)
+    {
+      break;
     }
   }
 }
