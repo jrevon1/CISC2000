@@ -31,31 +31,46 @@ int main()
     const int MAX_RATES = 20;
     // An array to accumulate the computed inflation rates
     double rates[MAX_RATES];
+    // A boolean value to check if the array is full
+    bool isArrayFull = false;
     
     // A do/while loop asking the user to enter two CPI inputs unless they don't type "y" or "Y" after
     do{ 
-        cout << "Enter the old and new consumer price indices: ";
-    
-        getCPIValues(old_cpi, new_cpi);
+        // If the array is not full, it will ask the user for input 
+        if (isArrayFull == false){
+          cout << "Enter the old and new consumer price indices: ";
 
+          // Calling the getCPIValues function to get user input
+          getCPIValues(old_cpi, new_cpi);
 
-        // Function call for InflationRate with the two CPI inputs
-        inflation_rate = InflationRate(old_cpi, new_cpi);
-        // Printing the calculations
-        cout << "Inflation rate is " << inflation_rate << endl;
-        cout << "Try again? (y or Y): ";
-        cin >> user_input;
-        
-        // If the inflation rate was NOT 0, then:
-        if (inflation_rate != 0){
-          // Store the calculated inflation rate in the current index in the array
-          rates[counter] = inflation_rate;
-          // Advance the counter, for both the array indexing AND calculating the average later
-          counter++;
-          // Then add the inflation rate to the running total
-          average_rate += inflation_rate;
+          // Calling InflationRate function with the two CPI inputs as parameters
+          inflation_rate = InflationRate(old_cpi, new_cpi);
+
+          // Printing the calculations
+          cout << "Inflation rate is " << inflation_rate << endl;
+          
+          // If the calculated inflation rate is NOT 0, then:
+          if (inflation_rate != 0){
+            // Store the calculated inflation rate in the current index in the array
+            rates[counter] = inflation_rate;
+            // Advance the counter, for both the array indexing AND calculating the average later
+            counter++;
+            // If there are 20 items in the array, set the isArrayFull boolean value to "true"
+            if (counter == 20){
+              isArrayFull = true;
+            }
+            // Then add the inflation rate to the running total
+            average_rate += inflation_rate;
+          }
+          // if the array is full, this message won't display
+          if (isArrayFull == false){
+            cout << "Try again? (y or Y): ";
+            cin >> user_input;
+          }
         }
-    }
+        else
+          break;
+      }
     while ((user_input == 'y') || (user_input == 'Y'));
     // If the user doesn't enter "y" or "Y", calculate the final average by dividing the running total by the number of times the loop executed
     average_rate /= counter;
@@ -63,7 +78,7 @@ int main()
     cout << "Average rate is " << average_rate << endl;
     
     // TEST to print out the array values and check them after execution
-    for (int i = 0; i <= MAX_RATES; i++){
+    for (int i = 0; i <= (counter - 1); i++){
             cout << rates[i] << endl;
         }
 
