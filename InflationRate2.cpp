@@ -31,9 +31,9 @@ void swap_values(double &x, double &y);
  * sort_array - takes in an array and a size, then uses a series of for-loops to selection sort the array
  * @param *array is a pointer to the array's first position
  * @param size is the total number of elements in the aforementioned array
- * @return is void; selectionSort uses the swap_values function to update the order by reference
+ * @return is void; sort_array uses the swap_values function to update the order by reference
 */
-void selectionSort(double *array, int size);
+void sort_array(double *array, int size);
 
 int main()
 {
@@ -158,7 +158,7 @@ void swap_values(double &x, double &y)
    y = temp;
 }
 
-void selectionSort(double array[], int size)
+void sort_array(double array[], int size)
 {
   // ADD NOTE HERE
   int min_size;
