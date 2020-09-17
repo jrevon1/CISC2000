@@ -1,4 +1,3 @@
-  
 //This program calculates the inflation rate given two Consumer Price Index values, stores the value in an array, sorts the array from smallest to largest values, and finds the median value
 
 #include <iostream>
@@ -30,11 +29,19 @@ void swap_values(double &x, double &y);
 
 /*
  * sort_array - takes in an array and a size, then uses a for-loop to compare the element at the current index [i] to the element at the next index [i+1]
- * @param *array is a pointer to the array's first position
- * @param size is the total number of elements in the aforementioned array
+ * @param *array: is a pointer to an array of doubles' first position
+ * @param size: is the total number of elements in the aforementioned array
  * @return is void; sort_array uses the swap_values function to update the order by reference
 */
 void sort_array(double *array, int size);
+
+/*
+ * findMedianRate - takes in an array and a number of elements, then calculates the median number in the array
+ * @param *array: is a pointer to an array of doubles' first position
+ * @param numElements: is an integer of the number of elements in the array
+ * @returns a double which will be the median rate
+*/
+double findMedianRate(double *array, int numElements);
 
 int main()
 {
@@ -98,22 +105,8 @@ int main()
     average_rate /= counter;
     // Print the result
     cout << "Average rate is " << average_rate << endl;
-
-    // TEST to print out the array values and check them after execution
-    cout << endl;
-    cout << "Unsorted List:" << endl;
-    for (int i = 0; i <= MAX_RATES; i++)
-    {
-      cout << rates[i] << endl;
-    }
-    sort_array(rates, counter);
-
-    cout << endl;
-    cout << "Sorted List:" << endl;
-    for (int i = 0; i <= MAX_RATES; i++)
-    {
-      cout << rates[i] << endl;
-    }
+    // Sort the list then print the result by calling the findMedianRate function
+    cout << "Median rate is " << findMedianRate(rates, counter) << endl;
 
     return 0;
 }
@@ -142,7 +135,6 @@ void getCPIValues (float &old_cpi, float &new_cpi)
         if ((old_cpi <= 0) && (new_cpi <= 0))
         {
             cerr << "Error: CPI values must be greater than 0" << endl;
-            cout << "Enter the old and new consumer price indices: ";
         }
     }
     // If old_cpi and new_cpi are 0 or less than 0, loop to get valid values
@@ -165,7 +157,7 @@ void sort_array(double array[], int size)
   while(1)
   {
     // Declare a boolean variable for later to check if the list was sorted or not
-    bool sorted = false;
+    bool wasListSorted = false;
 
     // For-loop to cycle through each element in the array, minus 1
     // otherwise it won't be able to compare the very last value to anything
@@ -178,8 +170,8 @@ void sort_array(double array[], int size)
         // Then call swap_values to swap that element [i] and 
         // the element at the next index in the array [i+1]
         swap_values(array[i], array[i+1]);
-        // And finally set sorted to "true" because we did sort it this time
-        sorted = true;
+        // And finally set wasListSorted to "true" because we did sort it this time
+        wasListSorted = true;
       }
       
     }
@@ -187,9 +179,23 @@ void sort_array(double array[], int size)
     // at the next index [i+1], then we didn't need to swap 
     // This means the list is in order so sorted stays false
     // and finally break out of the code
-    if(sorted == false)
+    if(wasListSorted == false)
     {
       break;
     }
   }
+}
+
+double findMedianRate(double *array, int numElements)
+{
+  // Sort the list by calling the sort_array function
+  sort_array(array, numElements);
+  // If the number of elements in the array is even
+  if(numElements % 2 == 0)
+    // Return the value at the index of the middle two elements, added together and divided by two
+    return (array[(numElements - 1) / 2] + array[numElements / 2]) / 2.0;
+  // Else the number of elements in the array is odd
+  else
+  // Return the value at the index of the number of elements divided by 2
+    return array[numElements/2];
 }
