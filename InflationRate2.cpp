@@ -1,3 +1,4 @@
+  
 //This program calculates the inflation rate given two Consumer Price Index values, stores the value in an array, sorts the array from smallest to largest values, and finds the median value
 
 #include <iostream>
@@ -37,7 +38,7 @@ void sort_array(double *array, int size);
 
 int main()
 {
-    // Declaring variables for the two user CPI inputs, to hold the calculated inflation rate, and to hold the running average rate, respectively
+    // Declare variables for the two user CPI inputs, to hold the calculated inflation rate, and to hold the running average rate, respectively
     float old_cpi, new_cpi, inflation_rate, average_rate;
     // A counter to calculate the final average rate
     int counter = 0;
@@ -58,13 +59,13 @@ int main()
         {
           cout << "Enter the old and new consumer price indices: ";
 
-          // Calling the getCPIValues function to get user input
+          // Call the getCPIValues function to get user input
           getCPIValues(old_cpi, new_cpi);
 
-          // Calling InflationRate function with the two CPI inputs as parameters
+          // Call InflationRate function with the two CPI inputs as parameters
           inflation_rate = InflationRate(old_cpi, new_cpi);
 
-          // Printing the calculations
+          // Print the calculations
           cout << "Inflation rate is " << inflation_rate << endl;
 
           // If the calculated inflation rate is NOT 0, then:
@@ -95,7 +96,7 @@ int main()
     while ((user_input == 'y') || (user_input == 'Y'));
     // If the user doesn't enter "y" or "Y", calculate the final average by dividing the running total by the number of times the loop executed
     average_rate /= counter;
-    // Printing the result
+    // Print the result
     cout << "Average rate is " << average_rate << endl;
 
     // TEST to print out the array values and check them after execution
@@ -140,7 +141,7 @@ void getCPIValues (float &old_cpi, float &new_cpi)
         // If old_cpi and new_cpi are 0 or less than 0, message displays to enter valid values
         if ((old_cpi <= 0) && (new_cpi <= 0))
         {
-            cout << "Error: CPI values must be greater than 0" << endl;
+            cerr << "Error: CPI values must be greater than 0" << endl;
             cout << "Enter the old and new consumer price indices: ";
         }
     }
@@ -150,7 +151,7 @@ void getCPIValues (float &old_cpi, float &new_cpi)
 
 void swap_values(double &x, double &y)
 {
-  // Create a temporary variable and setting it to the first argument
+  // Create a temporary variable and set it to the first argument
   // This MUST be a double otherwise you'll lose values in the array!
   double temp = x;
   // Set the first argument to the second argument
