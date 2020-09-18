@@ -52,6 +52,7 @@ int main()
     // An input to trigger the do/while loop
     char user_input;
     // A constant to limit the maximum number of CPI inputs to 20
+    // Due to arrays including the 0 position, this will be 19 instead of 20
     const int MAX_RATES = 19;
     // An array to accumulate the computed inflation rates
     double rates[MAX_RATES];
@@ -61,7 +62,7 @@ int main()
     // A do/while loop asking the user to enter two CPI inputs unless they don't type "y" or "Y" after
     do
     {
-        // If the array is not full, it will ask the user for input
+        // If the array is NOT full, it will ask the user for input
         if (isArrayFull == false)
         {
           cout << "Enter the old and new consumer price indices: ";
@@ -80,9 +81,9 @@ int main()
           {
             // Store the calculated inflation rate in the current index in the array
             rates[counter] = inflation_rate;
-            // Advance the counter, for both the array indexing AND calculating the average later
+            // Advance the counter, for both the array indexing, and calculating the average later
             counter++;
-            // If the counter, minus 1, is equal to the maximum number of items in the array, set the isArrayFull boolean value to "true"
+            // If the counter is equal to the maximum number of items in the array, set the isArrayFull boolean value to "true"
             if (counter == MAX_RATES)
             {
               isArrayFull = true;
@@ -90,13 +91,14 @@ int main()
             // Then add the inflation rate to the running total
             average_rate += inflation_rate;
           }
-          // if the array is full, this message won't display
+          // If the array is full, this message won't display
           if (isArrayFull == false)
           {
             cout << "Try again? (y or Y): ";
             cin >> user_input;
           }
         }
+        // When isArrayFull is set to true, break out of the block
         else
           break;
       }
@@ -114,15 +116,15 @@ int main()
 
 double InflationRate(float old_cpi, float new_cpi)
 {
-    // InflationRate will calculate the percentage increase or decrease
-    double InflationRate = (new_cpi - old_cpi) / old_cpi * 100;
+    // Declare variable to store the calculated inflation rate
+    double inflationRate;
     // precondition:   both prices must be greater than 0.0
     // postcondition:  the inflation rate is returned or 0 for invalid inputs
     if ((new_cpi <= 0) || (old_cpi <= 0))
-        return InflationRate = 0;
-    // otherwise return the calculated inflation rate
+        return inflationRate = 0;
+    // Otherwise return the calculated inflation rate
     else
-        return InflationRate;
+        return inflationRate = (new_cpi - old_cpi) / old_cpi * 100;
 }
 
 void getCPIValues (float &old_cpi, float &new_cpi)
@@ -131,14 +133,15 @@ void getCPIValues (float &old_cpi, float &new_cpi)
     {
         // Read in two float values for the cpi and store them in the variables
         cin >> old_cpi >> new_cpi;
-        // If old_cpi and new_cpi are 0 or less than 0, message displays to enter valid values
-        if ((old_cpi <= 0) && (new_cpi <= 0))
+        // If old_cpi and new_cpi are 0 or less than 0, message displays to enter valid values and prompts re-entry
+        if ((old_cpi <= 0) || (new_cpi <= 0))
         {
-            cerr << "Error: CPI values must be greater than 0" << endl;
+            cout << "Error: CPI values must be greater than 0" << endl;
+            cout << "Enter the old and new consumer price indices: ";
         }
     }
-    // If old_cpi and new_cpi are 0 or less than 0, loop to get valid values
-    while ((old_cpi <= 0) && (new_cpi <= 0));
+    // If old_cpi and new_cpi are less than or equal to 0, loop to get valid values
+    while ((old_cpi <= 0) || (new_cpi <= 0));
 }
 
 void swap_values(double &x, double &y)
@@ -167,18 +170,18 @@ void sort_array(double array[], int size)
       // element at the next index in the array, [i+1]
       if(array[i] > array[i+1])
       {
-        // Then call swap_values to swap that element [i] and 
+        // Then call swap_values to swap that element [i] and
         // the element at the next index in the array [i+1]
         swap_values(array[i], array[i+1]);
         // And finally set wasListSorted to "true" because we did sort it this time
         wasListSorted = true;
       }
-      
+
     }
-    // If the element at [i] was not bigger than the element 
-    // at the next index [i+1], then we didn't need to swap 
+    // If the element at [i] was not bigger than the element
+    // at the next index [i+1], then we didn't need to swap
     // This means the list is in order so sorted stays false
-    // and finally break out of the code
+    // and finally break out of the block
     if(wasListSorted == false)
     {
       break;
@@ -196,6 +199,6 @@ double findMedianRate(double *array, int numElements)
     return (array[(numElements - 1) / 2] + array[numElements / 2]) / 2.0;
   // Else the number of elements in the array is odd
   else
-  // Return the value at the index of the number of elements divided by 2
+  // So return the value at the index of the number of elements divided by 2
     return array[numElements/2];
 }
