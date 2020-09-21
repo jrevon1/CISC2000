@@ -52,8 +52,7 @@ int main()
     // An input to trigger the do/while loop
     char user_input;
     // A constant to limit the maximum number of CPI inputs to 20
-    // Due to arrays including the 0 position, this will be 19 instead of 20
-    const int MAX_RATES = 19;
+    const int MAX_RATES = 20;
     // An array to accumulate the computed inflation rates
     double rates[MAX_RATES];
     // A boolean value to check if the array is full
