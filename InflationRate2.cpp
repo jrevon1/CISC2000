@@ -90,12 +90,8 @@ int main()
             // Then add the inflation rate to the running total
             average_rate += inflation_rate;
           }
-          // If the array is full, this message won't display
-          if (isArrayFull == false)
-          {
-            cout << "Try again? (y or Y): ";
-            cin >> user_input;
-          }
+          cout << "Try again? (y or Y): ";
+          cin >> user_input;
         }
         // When isArrayFull is set to true, break out of the block
         else
