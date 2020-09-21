@@ -112,13 +112,15 @@ int main()
     return 0;
 }
 
-
+/*
+ * InflationRate - calculates the inflation rate
+ * precondition: both prices must be greater than or equal to 0
+ * postcondition: the inflationRate calculation is returned or 0 is returned for invalid inputs
+*/
 double InflationRate(float old_cpi, float new_cpi)
 {
     // Declare variable to store the calculated inflation rate
     double inflationRate;
-    // precondition:   both prices must be greater than 0.0
-    // postcondition:  the inflation rate is returned or 0 for invalid inputs
     if ((new_cpi <= 0) || (old_cpi <= 0))
         return inflationRate = 0;
     // Otherwise return the calculated inflation rate
@@ -126,6 +128,11 @@ double InflationRate(float old_cpi, float new_cpi)
         return inflationRate = (new_cpi - old_cpi) / old_cpi * 100;
 }
 
+/*
+ * getCPIValues - gets user input for two consumer price index values
+ * precondition: none
+ * postcondition: both user inputs must be greater than or equal to 0
+*/
 void getCPIValues (float &old_cpi, float &new_cpi)
 {
     do
@@ -143,6 +150,11 @@ void getCPIValues (float &old_cpi, float &new_cpi)
     while ((old_cpi <= 0) || (new_cpi <= 0));
 }
 
+/*
+ * swap_values - swaps two values passed as arguments
+ * precondition: at least one set of values should be assigned using getCPIValues
+ * postcondition: x's starting value is now y and y's starting value is now x
+*/
 void swap_values(double &x, double &y)
 {
   // Create a temporary variable and set it to the first argument
@@ -154,6 +166,11 @@ void swap_values(double &x, double &y)
   y = temp;
 }
 
+/*
+ * sort_array - performs a bubble sort given an array and size
+ * precondition: double array[] is an unordered array of size
+ * postcondition: array is ordered from smallest value to highest value
+*/
 void sort_array(double array[], int size)
 {
   while(1)
@@ -188,6 +205,12 @@ void sort_array(double array[], int size)
   }
 }
 
+/*
+ * findMedianRate - finds the middle value given an array and number of elements
+ * precondition: double *array is a pointer to an unordered array of numElements
+ * postcondition: returns the value at the middle index if numElements is odd or
+   returns the value of the two middle indicies divided by two if numElements is even
+*/
 double findMedianRate(double *array, int numElements)
 {
   // Sort the list by calling the sort_array function
