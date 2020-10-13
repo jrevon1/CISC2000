@@ -1,4 +1,10 @@
 // TO DO: Add comments to the code
+ /* Palindrome.cpp
+ * This program:
+
+ * Author: Jordan Revon
+ * Last modified on: 10/13/2020
+*/
 
 #include <iostream>
 #include <string>
@@ -6,11 +12,34 @@
 
 using namespace std;
 
-string remove_punct(const string &inputString); // done
-string convert_lower(const string &inputString); //done
-string reverse(string cleanInput); // done
-void display(vector<string> palindromes, vector<string> non_palindromes); //done
-bool is_palindrome(string inputString); // done
+
+// removePunctuation creates a copy of the string and removes punctuation from the copy leaving the original alone.
+// @param inputString is the string to clean.
+// @returns a cleaned string with no punctuation.
+string removePunctuation(const string &inputString);
+
+
+// convertToLower returns a lowercase version of the inputString string.
+// @param inputString is the string to convert.
+// @returns a lowercase string.
+string convertToLower(const string &inputString);
+
+// Returns a reverse version of the cleanInput string.
+// @param cleanInput is the string to reverse.
+// @returns a string with the contents that's the reverse of the input.
+string reverse(string cleanInput);
+
+// display displays the strings.
+// @param palindromes is a vector of palindrome strings to display
+// @param non-palindromes is a vector of non-palindrome strings to display
+void display(vector<string> palindromes, vector<string> non_palindromes);
+
+// isPalindrome passes the input string and calls all of the other 
+//  functions to prepare the string.
+// Once the string is cleaned, it tests if it's a palindrome. 
+// @param inputString is the string to check.
+// @returns true if it's a palindrome and false if not.
+bool isPalindrome(string inputString);
 
 int main()
 {
@@ -19,7 +48,7 @@ int main()
     vector<string> palindromes, non_palindromes;
     do
     {
-        cout << "Enter your palindrome or type quit: " << endl;
+        cout << "Enter your palindrome or type quit:" << endl;
         getline(cin, inputString);
         if(inputString == "quit")
         {
@@ -27,8 +56,8 @@ int main()
         }
         else
         {
-            cleanInput = remove_punct(convert_lower(inputString));
-            if(is_palindrome(cleanInput))
+            cleanInput = removePunctuation(convertToLower(inputString));
+            if(isPalindrome(cleanInput))
                 palindromes.push_back(inputString);
             else
                 non_palindromes.push_back(inputString);
@@ -40,7 +69,7 @@ int main()
 }
 
 // Removes punctuation from a string
-string remove_punct(const string &inputString)
+string removePunctuation(const string &inputString)
 {
     string cleanInput;
     for(int i = 0; i < inputString.length(); i++)
@@ -54,7 +83,7 @@ string remove_punct(const string &inputString)
 }
 
 // Converts a string to lowercase only
-string convert_lower(const string &inputString)
+string convertToLower(const string &inputString)
 {
     string lowerInput;
     for(int i = 0; i < inputString.length(); i++)
@@ -91,9 +120,9 @@ void display(vector<string> palindromes, vector<string> non_palindromes)
 }
 
 // Checks to see if a cleaned string is a palindrome
-bool is_palindrome(string inputString)
+bool isPalindrome(string inputString)
 {
-    string cleanString = convert_lower(remove_punct(inputString));
+    string cleanString = convertToLower(removePunctuation(inputString));
     string reverseInput = reverse(cleanString);
     if(reverseInput == cleanString)
         return true;
