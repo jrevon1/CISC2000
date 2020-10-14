@@ -30,9 +30,8 @@ string convertToLower(const string &inputString);
 string reverse(string cleanInput);
 
 // display displays the strings.
-// @param palindromes is a vector of palindrome strings to display
-// @param non-palindromes is a vector of non-palindrome strings to display
-void display(vector<string> palindromes, vector<string> non_palindromes);
+// @param vstrings is a vector of strings to display
+void display(vector<string> vstrings);
 
 // isPalindrome passes the input string and calls all of the other 
 //  functions to prepare the string.
@@ -48,7 +47,7 @@ int main()
     vector<string> palindromes, non_palindromes;
     do
     {
-        cout << "Enter your palindrome or type quit:" << endl;
+        cout << "Enter your palindrome or type quit: " << endl;
         getline(cin, inputString);
         if(inputString == "quit")
         {
@@ -64,7 +63,10 @@ int main()
         }
     }
     while(tryAgain == true);
-    display(palindromes, non_palindromes);
+    cout << "Palindromes:" << endl;
+    display(palindromes);
+    cout << "NOT Palindromes:" << endl;
+    display(non_palindromes);
     return 0;
 }
 
@@ -105,17 +107,11 @@ string reverse(string inputCopy)
 }
 
 // Displays the contents of the vectors
-void display(vector<string> palindromes, vector<string> non_palindromes)
+void display(vector<string> vstrings)
 {
-    cout << "Palindromes:" << endl;
-    for(unsigned int i = 0; i < palindromes.size(); i++)
+    for(unsigned int i = 0; i < vstrings.size(); i++)
     {
-        cout << "\t" << palindromes[i] << endl;
-    }
-    cout << "NOT Palindromes:" << endl;
-    for(unsigned int i = 0; i < non_palindromes.size(); i++)
-    {
-        cout << "\t" << non_palindromes[i] << endl;
+        cout << "\t" << vstrings[i] << endl;
     }
 }
 
