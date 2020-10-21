@@ -12,33 +12,32 @@ class Rectangle {
   Rectangle(int h = 1, int w = 1);
 
   // add - Adds the given addHeight to height and addWidth to width
-  // @param int addHeight, int addWidth
+  // @param int addHeight is a given value to add to an invoking object's height
+  // @param int addWidth is a given value to add to an invoking object's width
   // @returns void
   void add(int addHeight, int addWidth);
-
   
   // set - Sets the height to new_height and width to new_width
-  // @param int new_height, int new_width
+  // @param int new_height is a given value to change an invoking object's height to 
+  // @param int new_width is a given value to change an invoking object's width to 
   // @returns void
   void set(int new_height, int new_width);
-  
 
-  // draw - Function uses height as the vertical dimension (outer loop
-  //  and width as the horizontal dimension (inner loop) to draw the
-  //  rectangle with '#' characters.
+  // draw - Function uses height as the vertical dimension (outer loop) and width as the 
+  //  horizontal dimension (inner loop) to draw the rectangle with '#' characters.
   // @returns void
   void draw();
 
   // Accessor function for width
-  // @returns width value
+  // @returns a width value
   int getWidth() const { return width;}
   
   // Accessor function for height
-  // @returns height value
+  // @returns a height value
   int getHeight() const { return height;}
 
-  // isSquare -  Function that tells if a rectangle is a square
-  // @returns bool value
+  // isSquare -  Function that determines if a rectangle is a square (i.e. height is equal to width)
+  // @returns a bool value
   bool isSquare();
   
   private:
@@ -47,8 +46,7 @@ class Rectangle {
 };
 
 // Default constructor implementation
-// Sets height and width to the unit rectangle which is a square 1x1
-// size.
+// Sets height and width to the unit rectangle which is a square 1x1 size.
 Rectangle::Rectangle(int h, int w)
 {
   height = 1;
@@ -56,9 +54,9 @@ Rectangle::Rectangle(int h, int w)
 }
 
 // "add" member function implementation
-// Modifies invoking object by adding addHeight to height and adding 
-//  addWidth to width
-// @param int addHeight, int addWidth
+// Modifies invoking object by adding addHeight to height and adding addWidth to width
+// precondition: an initialized object of the Rectangle class
+// postcondition: an object of the Rectangle class with, potentially, a new height and/or width
 void Rectangle::add(int addHeight, int addWidth)
 {
   height += addHeight;
@@ -66,8 +64,9 @@ void Rectangle::add(int addHeight, int addWidth)
 }
 
 // "set" member function implementation
-// Changes invoking object's new_height to height and new_width to width
-// @param int new_height, int new_width
+// Changes invoking object's height to new_height and width to new_width
+// precondition: an initialized object of the Rectangle class
+// postcondition: an object of the Rectangle class with a new height and width
 void Rectangle::set(int new_height, int new_width)
 {
   height = new_height;
@@ -75,8 +74,10 @@ void Rectangle::set(int new_height, int new_width)
 }
 
 // "draw" member function implementation
-// Uses the height in an outer loop and the width in an
-// inner loop to draw the rectangle with '#' characters.
+// Uses the height in an outer loop and the width in an inner loop to draw the 
+//  rectangle with '#' characters.
+// precondition: an initialized object of the Rectangle class
+// postcondition: displays the Rectangle on screen using '#' characters
 void Rectangle::draw()
 {
   // Outer loop for height (rows)
@@ -93,10 +94,11 @@ void Rectangle::draw()
 }
 
 // "isSquare" member function implementation
-// Determines if a given rectangle is also a square 
-//  (i.e. height is equal to width)
+// Determines if a given rectangle is also a square (i.e. height is equal to width)
 // returns the result of a comparison between getHeight() and getWidth()
 //  of the invoking object
+// precondition: an initialized object of the Rectangle class
+// postcondition: a value of "true" if height = width, or a "false" value if not
 bool Rectangle::isSquare()
 {
   return (getHeight() == getWidth());
@@ -123,6 +125,7 @@ int main()
   cout << "r2 is " << r2.getHeight() << " x " << r2.getWidth() << endl;
   r2.draw();
   
+   // Call isSquare on Rectangle r2 and print the result
    if (r2.isSquare())
      cout << "r2 is a square" << endl;
    else
