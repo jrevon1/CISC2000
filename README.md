@@ -18,7 +18,7 @@ A collection of classwork submitted as part of my Advanced C++ programming cours
   This program creates a Galton board, represented as a 2-dimensional array. 
   Using dynamic memory allocation, it simulates a ball falling a chosen number of times through a chosen number of rows using a chosen pseudo-random seed, before finally displaying the results, then freeing the dynamic memory allocation.
   
-## IntArrayPlay
+## IntArrayPlay.cpp
   A program that creates an array from list of up to 20 integers, then inserts, deletes, and finally appends a value to the array.
 
 ## Palindrome.cpp
