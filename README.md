@@ -2,16 +2,16 @@
 
 A collection of classwork submitted as part of my Advanced C++ programming course.
 
-## InflationRate
+## /InflationRate
   Several directories in a progressive assignment to ultimately calculate multiple inflation rates based on input data, and sort the rates from smallest to largest.
 
-## RationalClass
+## /RationalClass
   Several directories in a progressive assignment to ultimately create a rational class object (fraction). 
   
-## minilabs
+## /minilabs
   Smaller projects completed as classwork
 
-## simple-test
+## /simple-test
   An employee payroll application that prints uniquely formatted check stubs based on different selected employee classes. Classes are defined for an administrator, a commission employee, an hourly employee, and a salaried employee.
 
 ## GaltonBoard.cpp
