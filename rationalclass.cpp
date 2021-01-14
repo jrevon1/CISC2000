@@ -7,41 +7,41 @@ using namespace std;
 class rational
 {
 public:
-	/* Done: default constructor set the rational number to 0, (i.e., numerator is 0, denominator is 1) */
+	/* default constructor set the rational number to 0, (i.e., numerator is 0, denominator is 1) */
   rational();
   rational(int n);
   rational(int n, int d);
 
-	/* Done: define input to set the invoking object's value from user input */
+	/* define input to set the invoking object's value from user input */
 	void input();
 
-	/* Done: define output to display invoking object's value in the standard output, in the form of numerator/denominator */
+	/* define output to display invoking object's value in the standard output, in the form of numerator/denominator */
 	void output() const;
 
-	/* Done: declare the accessor to return the invoking object's numerator */
+	/* declare the accessor to return the invoking object's numerator */
   int get_numerator() const { return numerator;}
 	
-	/* Done: declare the accessor to return the invoking object's denominator */
+	/* declare the accessor to return the invoking object's denominator */
   int get_denominator() const { return denominator;}
 
-	/* Done: declare Add to set the invoking object to be the sum of op1 and op2, use const & parameters */
+	/* declare Add to set the invoking object to be the sum of op1 and op2, use const & parameters */
   void Add(const rational& op1, const rational& op2);
 
 
-	/* Done: declare Subtract to set the invoking object to the difference of op1 and op2, use const & parameters */
+	/* declare Subtract to set the invoking object to the difference of op1 and op2, use const & parameters */
   void Subtract(const rational& op1, const rational& op2);
 
 
-	/* Done: declare Multiply to set the invoking object to the product of op1 and op2, use const & parameters */
+	/* declare Multiply to set the invoking object to the product of op1 and op2, use const & parameters */
   void Multiply(const rational& op1, const rational& op2);
 
 
-	/* Done: declare Divide to set the invoking object to the Quotient of op1 and op2, use const & parameters */
+	/* declare Divide to set the invoking object to the Quotient of op1 and op2, use const & parameters */
   void Divide(const rational& op1, const rational& op2);
 
 
 private:
-	/* Done: declare data members for rational object */
+	/* declare data members for rational object */
   int numerator;
   int denominator;
 
@@ -51,21 +51,21 @@ private:
 int main()
 {
 	char oper;
-	// Done: declare rational objects for result and operand.
+	// declare rational objects for result and operand.
   rational result, op2;
 
 	cout << "Enter op1 (in the format of p/q): ";
-	// Done: Use your input function to read the first operand into result.
+	// Use your input function to read the first operand into result.
   result.input();
   
 
 	//Test rational class member function 
 	do {
 		cout << "\nEnter operator [+, -, /, *, =, c(lear), a(ccessors), q(uit)]: ";
-    // Done: Read the operator into oper
+    // Read the operator into oper
     cin >> oper;
     
-	  // Done: Implement a switch or multiway if statement with one case for each option above where
+	  // Implement a switch or multiway if statement with one case for each option above where
 		// '+','*','/','-' inputs a rational op1 and calculates result.oper(result,op1)
 		// '=' outputs the current result,
 		// 'c' to clear current result, use input function to read first operand into result,
